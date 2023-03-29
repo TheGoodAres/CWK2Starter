@@ -1,5 +1,12 @@
+//
+//  AirData.swift
+//  CourseWork2Starter-main
+//
+//  Created by Robert-Dumitru Oprea on 28/03/2023.
+//
+
 import Foundation
-class ModelData: ObservableObject {
+class AirData: ObservableObject {
     @Published var forecast: Forecast?
     @Published var userLocation: String = ""
     let apiKey = "d23f70c3225fd0fa59564d2ffaded0fa"
@@ -9,7 +16,7 @@ class ModelData: ObservableObject {
 
 
     func loadData(lat: Double, lon: Double) async throws -> Forecast {
-        let url = URL(string: "https://api.openweathermap.org/data/3.0/onecall?lat=\(lat)&lon=\(lon)&units=metric&appid=\(apiKey)")
+        let url = URL(string: "http://api.openweathermap.org/data/2.5/air_pollution?lat=\(lat)&lon=\(lon)&appid=\(API key}")
         let session = URLSession(configuration: .default)
 
         let (data, _) = try await session.data(from: url!)

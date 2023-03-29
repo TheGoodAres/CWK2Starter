@@ -22,11 +22,6 @@ struct SearchView: View {
                 .ignoresSafeArea()
             
             VStack{
-                Text("This is the search view that will allow user to enter new location and the .OnCommit should handle conversion to geo coords and then reversed to get the location if it exists. \n The geo coords are then used to update the weather data for the new location and all views should be updated in rdeal time.\n There is no code to do this - you must create this code.")
-                    .font(.subheadline)
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.center)
-                    .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
                 TextField("Enter New Location", text: self.$location, onCommit: {
                      
                     CLGeocoder().geocodeAddressString(location) { (placemarks, error) in
@@ -34,7 +29,7 @@ struct SearchView: View {
                         
                         if let lat = placemarks?.first?.location?.coordinate.latitude,
                            let lon = placemarks?.first?.location?.coordinate.longitude {
-                            
+                            loadData(lat: lat, lon: lon)
                             isSearchOpen.toggle()
                         }
                         
@@ -58,5 +53,13 @@ struct SearchView: View {
         }// Zstack
         Spacer()
     }// Some
-    
+    func loadData(lat:Double, lon: Double) {
+        Task{
+            do{
+                try await modelData.loadData(lat:lat,lon:lon)
+            } catch {
+                print("failed to load data!")
+            }
+        }
+    }
 } //View

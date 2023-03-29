@@ -17,7 +17,7 @@ struct HourCondition: View {
                 Text(getFormattedDate(from: current.dt, type: 2))
                 IconFromWebsite(url: current.weather[0].icon)
                 Text("\(current.temp.rounded().formatted()) ºC")
-                Text(current.weather[0].weatherDescription.rawValue)
+                Text(current.weather[0].weatherDescription.rawValue.capitalized)
                 
             }.padding()
         }

@@ -15,7 +15,7 @@ struct DailyView: View {
                 IconFromWebsite(url:day.weather[0].icon)
                 Spacer()
                 VStack {
-                    Text(day.weather[0].weatherDescription.rawValue)
+                    Text(day.weather[0].weatherDescription.rawValue.capitalized)
                     
                     Text(getFormattedDate(from:day.dt,type:3))
                     

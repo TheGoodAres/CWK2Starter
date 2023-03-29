@@ -25,11 +25,12 @@
 		25AE539E29C3CD0E0024DED1 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AE539D29C3CD0E0024DED1 /* Home.swift */; };
 		25AE53A029C3CD150024DED1 /* CurrentWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AE539F29C3CD150024DED1 /* CurrentWeatherView.swift */; };
 		25AE53A329C3CD460024DED1 /* PollutionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25AE53A229C3CD460024DED1 /* PollutionView.swift */; };
+		D473C28E29D3181C00FA44A3 /* AirStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = D473C28D29D3181C00FA44A3 /* AirStructures.swift */; };
 		D4B6A2C129CA87C900003AFA /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B6A2C029CA87C900003AFA /* Utility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		25AE537129C3CB4C0024DED1 /* CourseWork2Starter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CourseWork2Starter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		25AE537129C3CB4C0024DED1 /* CourseWork2Starter-main.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CourseWork2Starter-main.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		25AE537429C3CB4C0024DED1 /* CourseWork2StarterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseWork2StarterApp.swift; sourceTree = "<group>"; };
 		25AE537629C3CB4C0024DED1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		25AE537829C3CB4D0024DED1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -48,6 +49,7 @@
 		25AE539D29C3CD0E0024DED1 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		25AE539F29C3CD150024DED1 /* CurrentWeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeatherView.swift; sourceTree = "<group>"; };
 		25AE53A229C3CD460024DED1 /* PollutionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollutionView.swift; sourceTree = "<group>"; };
+		D473C28D29D3181C00FA44A3 /* AirStructures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirStructures.swift; sourceTree = "<group>"; };
 		D4B6A2C029CA87C900003AFA /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,7 +75,7 @@
 		25AE537229C3CB4C0024DED1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				25AE537129C3CB4C0024DED1 /* CourseWork2Starter.app */,
+				25AE537129C3CB4C0024DED1 /* CourseWork2Starter-main.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -148,6 +150,7 @@
 		25AE53A429C3CD9B0024DED1 /* AirModel */ = {
 			isa = PBXGroup;
 			children = (
+				D473C28D29D3181C00FA44A3 /* AirStructures.swift */,
 			);
 			path = AirModel;
 			sourceTree = "<group>";
@@ -155,9 +158,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		25AE537029C3CB4C0024DED1 /* CourseWork2Starter */ = {
+		25AE537029C3CB4C0024DED1 /* CourseWork2Starter-main */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 25AE537F29C3CB4D0024DED1 /* Build configuration list for PBXNativeTarget "CourseWork2Starter" */;
+			buildConfigurationList = 25AE537F29C3CB4D0024DED1 /* Build configuration list for PBXNativeTarget "CourseWork2Starter-main" */;
 			buildPhases = (
 				25AE536D29C3CB4C0024DED1 /* Sources */,
 				25AE536E29C3CB4C0024DED1 /* Frameworks */,
@@ -167,9 +170,9 @@
 			);
 			dependencies = (
 			);
-			name = CourseWork2Starter;
+			name = "CourseWork2Starter-main";
 			productName = CourseWork2Starter;
-			productReference = 25AE537129C3CB4C0024DED1 /* CourseWork2Starter.app */;
+			productReference = 25AE537129C3CB4C0024DED1 /* CourseWork2Starter-main.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -187,7 +190,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 25AE536C29C3CB4C0024DED1 /* Build configuration list for PBXProject "CourseWork2Starter" */;
+			buildConfigurationList = 25AE536C29C3CB4C0024DED1 /* Build configuration list for PBXProject "CourseWork2Starter-main" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -200,7 +203,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				25AE537029C3CB4C0024DED1 /* CourseWork2Starter */,
+				25AE537029C3CB4C0024DED1 /* CourseWork2Starter-main */,
 			);
 		};
 /* End PBXProject section */
@@ -223,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D473C28E29D3181C00FA44A3 /* AirStructures.swift in Sources */,
 				25AE539829C3CCF90024DED1 /* SearchView.swift in Sources */,
 				25AE539629C3CCF20024DED1 /* DailyView.swift in Sources */,
 				25AE538C29C3CC710024DED1 /* Structures.swift in Sources */,
@@ -426,7 +430,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		25AE536C29C3CB4C0024DED1 /* Build configuration list for PBXProject "CourseWork2Starter" */ = {
+		25AE536C29C3CB4C0024DED1 /* Build configuration list for PBXProject "CourseWork2Starter-main" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				25AE537D29C3CB4D0024DED1 /* Debug */,
@@ -435,7 +439,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		25AE537F29C3CB4D0024DED1 /* Build configuration list for PBXNativeTarget "CourseWork2Starter" */ = {
+		25AE537F29C3CB4D0024DED1 /* Build configuration list for PBXNativeTarget "CourseWork2Starter-main" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				25AE538029C3CB4D0024DED1 /* Debug */,

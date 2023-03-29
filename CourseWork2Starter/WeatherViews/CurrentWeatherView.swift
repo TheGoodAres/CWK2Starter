@@ -55,6 +55,7 @@ struct CurrentWeatherView: View {
                         Text(getFormattedDate(from: modelData.forecast!.current.sunrise ?? 0, type: 1))
                     }
                 }
+                Spacer()
             }
         }
             .task {

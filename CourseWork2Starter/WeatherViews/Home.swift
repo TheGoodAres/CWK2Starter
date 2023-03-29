@@ -23,7 +23,7 @@ struct Home: View {
                 .ignoresSafeArea()
             VStack {
                 Spacer()
-                Button { }
+                Button { isSearchOpen = true}
                 label: {
                     Text("Change Location")
                         .font(.largeTitle)
@@ -58,15 +58,23 @@ struct Home: View {
                 .padding()
         }
             .onAppear {
-            Task.init {
-                self.userLocation = await getLocFromLatLong(lat: modelData.forecast!.lat, lon: modelData.forecast!.lon)
-
-            }
+                Task{
+                    self.userLocation = await getLocFromLatLong(lat: modelData.forecast!.lat, lon: modelData.forecast!.lon)
+                }
         }
-            .sheet(isPresented: $isSearchOpen) {
-                
+            .sheet(isPresented: $isSearchOpen, onDismiss: updateLocation) {
+                SearchView(isSearchOpen: $isSearchOpen, userLocation: $userLocation)
             }
+            
 
+    }
+    func updateLocation() {
+        Task{
+            
+            try await Task.sleep(nanoseconds: 3_000_000_000)
+            self.userLocation = await getLocFromLatLong(lat: modelData.forecast!.lat, lon: modelData.forecast!.lon)
+            print("location updated")
+        }
     }
 }
 
