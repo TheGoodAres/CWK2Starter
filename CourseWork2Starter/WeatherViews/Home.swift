@@ -23,10 +23,12 @@ struct Home: View {
                 .ignoresSafeArea()
             VStack {
                 Spacer()
-                Button { isSearchOpen = true}
+                Spacer()
+                Button { isSearchOpen = true }
                 label: {
                     Text("Change Location")
                         .font(.largeTitle)
+                        .bold()
                 }
                 Spacer()
                 VStack {
@@ -34,7 +36,7 @@ struct Home: View {
                     Text(userLocation)
                         .font(.title)
                     Spacer()
-                    Text(getFormattedDate(from: modelData.forecast?.current.dt ?? 0, type:0))
+                    Text(getFormattedDate(from: modelData.forecast?.current.dt ?? 0, type: 0))
                         .font(.title)
                         .bold()
                     Spacer()
@@ -49,29 +51,34 @@ struct Home: View {
                     Text("Pressure: \(modelData.forecast?.current.pressure ?? 0) hPa")
                     Spacer()
                     HStack {
-                        IconFromWebsite(url: modelData.forecast?.current.weather[0].icon ?? "01n.png)")
-                        Text(modelData.forecast?.current.weather[0].weatherDescription.rawValue ?? "test")
+                        Label {
+                            Text(modelData.forecast?.current.weather[0].weatherDescription.rawValue ?? "test")
+                        } icon: {
+                            IconFromWebsite(url: modelData.forecast?.current.weather[0].icon ?? "01n.png)")
+                        }
                     }
                 }
-                .bold()
+                .fontWeight(.medium)
+                .font(.system(size:20))
             }
                 .padding()
         }
             .onAppear {
-                Task{
-                    self.userLocation = await getLocFromLatLong(lat: modelData.forecast!.lat, lon: modelData.forecast!.lon)
-                }
+            Task {
+                self.userLocation = await getLocFromLatLong(lat: modelData.forecast!.lat, lon: modelData.forecast!.lon)
+            }
         }
             .sheet(isPresented: $isSearchOpen, onDismiss: updateLocation) {
-                SearchView(isSearchOpen: $isSearchOpen, userLocation: $userLocation)
-            }
-            
+            SearchView(isSearchOpen: $isSearchOpen, userLocation: $userLocation)
+        }
+
 
     }
     func updateLocation() {
-        Task{
-            
-            try await Task.sleep(nanoseconds: 3_000_000_000)
+        Task {
+            //the delay has been added to allow the system to load the data
+            //the UI won't be
+            try await Task.sleep(nanoseconds: 1_000_000_000)
             self.userLocation = await getLocFromLatLong(lat: modelData.forecast!.lat, lon: modelData.forecast!.lon)
             print("location updated")
         }

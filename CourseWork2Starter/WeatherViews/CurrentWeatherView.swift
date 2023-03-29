@@ -34,8 +34,8 @@ struct CurrentWeatherView: View {
                             .foregroundColor(.black)
                     }
                     HStack {
-                        Text("H: ºC")
-                        Text("L: ºC")
+                        Text("H: \(modelData.forecast?.daily[0].temp.max.rounded().formatted() ?? "0") ºC")
+                        Text("L: \(modelData.forecast?.daily[0].temp.min.rounded().formatted() ?? "0") ºC")
                     }
                     Text("Feels Like: \((Int)(modelData.forecast!.current.feelsLike))ºC")
                         .foregroundColor(.black)
@@ -49,9 +49,9 @@ struct CurrentWeatherView: View {
                     }
                     HStack{
                         // TODO: find sunrise and sunset images
-                        Image(systemName: "minus")
+                        Image(systemName: "sunrise.fill").renderingMode(.original)
                         Text(getFormattedDate(from: modelData.forecast!.current.sunset ?? 0, type: 1))
-                        Image(systemName: "plus")
+                        Image(systemName: "sunset.fill").renderingMode(.original)
                         Text(getFormattedDate(from: modelData.forecast!.current.sunrise ?? 0, type: 1))
                     }
                 }

@@ -24,3 +24,5 @@ struct ListData: Codable {
 struct MainData: Codable {
     let aqi: Int
 }
+
+
