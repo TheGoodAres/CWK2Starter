@@ -67,6 +67,7 @@ struct Home: View {
             Task {
                 self.userLocation = await getLocFromLatLong(lat: modelData.forecast!.lat, lon: modelData.forecast!.lon)
             }
+            
         }
             .sheet(isPresented: $isSearchOpen, onDismiss: updateLocation) {
             SearchView(isSearchOpen: $isSearchOpen, userLocation: $userLocation)
@@ -78,7 +79,7 @@ struct Home: View {
         Task {
             //the delay has been added to allow the system to load the data
             //the UI won't be
-            try await Task.sleep(nanoseconds: 1_000_000_000)
+            try await Task.sleep(nanoseconds: 1_500_000_000)
             self.userLocation = await getLocFromLatLong(lat: modelData.forecast!.lat, lon: modelData.forecast!.lon)
             print("location updated")
         }

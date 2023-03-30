@@ -2,40 +2,41 @@
 //  AirData.swift
 //  CourseWork2Starter-main
 //
-//  Created by Robert-Dumitru Oprea on 28/03/2023.
+//  Created by Robert-Dumitru Oprea on 29/03/2023.
 //
 
 import Foundation
 class AirData: ObservableObject {
-    @Published var forecast: Forecast?
+    @Published var airQuality: AirQuality?
     @Published var userLocation: String = ""
     let apiKey = "d23f70c3225fd0fa59564d2ffaded0fa"
     init() {
-        self.forecast = load("london.json")
+        self.airQuality = load("air_pollution.json")
     }
 
 
-    func loadData(lat: Double, lon: Double) async throws -> Forecast {
-        let url = URL(string: "http://api.openweathermap.org/data/2.5/air_pollution?lat=\(lat)&lon=\(lon)&appid=\(API key}")
+    func loadData(lat: Double, lon: Double) async throws -> AirQuality {
+        let url = URL(string: "https://api.openweathermap.org/data/2.5/air_pollution?lat=\(lat)&lon=\(lon)&units=metric&appid=\(apiKey)")
         let session = URLSession(configuration: .default)
 
         let (data, _) = try await session.data(from: url!)
 
         do {
-            print(data)
-            let forecastData = try JSONDecoder().decode(Forecast.self, from: data)
+            //print(data)
+            let airData = try JSONDecoder().decode(AirQuality.self, from: data)
             DispatchQueue.main.async {
-                self.forecast = forecastData
+                self.airQuality = airData
+                print(airData.self)
             }
 
-            return forecastData
+            return airData
         } catch {
             print(error)
             throw error
         }
     }
 
-    func load<Forecast: Decodable>(_ filename: String) -> Forecast {
+    func load<AirQuality: Decodable>(_ filename: String) -> AirQuality {
         let data: Data
 
         guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
@@ -51,9 +52,9 @@ class AirData: ObservableObject {
 
         do {
             let decoder = JSONDecoder()
-            return try decoder.decode(Forecast.self, from: data)
+            return try decoder.decode(AirQuality.self, from: data)
         } catch {
-            fatalError("Couldn't parse \(filename) as \(Forecast.self):\n\(error)")
+            fatalError("Couldn't parse \(filename) as \(AirQuality.self):\n\(error)")
         }
     }
 }

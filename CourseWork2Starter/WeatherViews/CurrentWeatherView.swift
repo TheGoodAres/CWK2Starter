@@ -14,47 +14,77 @@ struct CurrentWeatherView: View {
 
     var body: some View {
         ZStack {
-            Image("background")
+            Image("background2")
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
 
-            VStack {
+            VStack(spacing:50) {
                 Spacer()
                 Text(locationString)
-                Spacer()
-                //          Temperature Info
-                VStack {
+                    .font(.largeTitle)
+                    .fontWeight(.medium)
+                
+                // Temperature Info
+                VStack(spacing:50) {
                     Text("\((Int)(modelData.forecast!.current.temp))ºC")
                         .padding()
                         .font(.largeTitle)
-                    HStack {
-                        IconFromWebsite(url: modelData.forecast?.current.weather[0].icon ?? "01n.png")
-                        Text(modelData.forecast!.current.weather[0].weatherDescription.rawValue.capitalized)
-                            .foregroundColor(.black)
-                    }
-                    HStack {
-                        Text("H: \(modelData.forecast?.daily[0].temp.max.rounded().formatted() ?? "0") ºC")
-                        Text("L: \(modelData.forecast?.daily[0].temp.min.rounded().formatted() ?? "0") ºC")
-                    }
-                    Text("Feels Like: \((Int)(modelData.forecast!.current.feelsLike))ºC")
-                        .foregroundColor(.black)
-                    HStack {
-                        Text("Wind Speed: \(modelData.forecast!.current.windSpeed.formatted())m/s")
-                        Text("Direction: \(convertDegToCardinal(deg:modelData.forecast!.current.windDeg))")
-                    }
-                    HStack {
-                        Text("Humidity: \(modelData.forecast!.current.humidity)%")
-                        Text("Pressure: \(modelData.forecast!.current.pressure) hPg")
-                    }
-                    HStack{
-                        // TODO: find sunrise and sunset images
-                        Image(systemName: "sunrise.fill").renderingMode(.original)
-                        Text(getFormattedDate(from: modelData.forecast!.current.sunset ?? 0, type: 1))
-                        Image(systemName: "sunset.fill").renderingMode(.original)
-                        Text(getFormattedDate(from: modelData.forecast!.current.sunrise ?? 0, type: 1))
+                    VStack(spacing:30) {
+                        HStack {
+                            Label {
+                                Text(modelData.forecast!.current.weather[0].weatherDescription.rawValue.capitalized)
+                                    .foregroundColor(.black)
+
+                            } icon: {
+                                IconFromWebsite(url: modelData.forecast?.current.weather[0].icon ?? "01n.png")
+                            }
+                        }
+                        VStack(spacing: 10) {
+                            HStack {
+                                Spacer()
+                                Text("H: \(modelData.forecast?.daily[0].temp.max.rounded().formatted() ?? "0") ºC")
+                                Spacer()
+                                Text("L: \(modelData.forecast?.daily[0].temp.min.rounded().formatted() ?? "0") ºC")
+                                Spacer()
+                            }
+                            Text("Feels Like: \((Int)(modelData.forecast!.current.feelsLike))ºC")
+                                .foregroundColor(.black)
+                        }
+                        Group {
+                            VStack(spacing: 40) {
+
+                                HStack {
+                                    Spacer()
+                                    Text("Wind Speed: \(modelData.forecast!.current.windSpeed.formatted())m/s")
+                                    Spacer()
+                                    Text("Direction: \(convertDegToCardinal(deg: modelData.forecast!.current.windDeg))")
+                                    Spacer()
+                                }
+
+                                HStack {
+                                    Spacer()
+                                    Text("Humidity: \(modelData.forecast!.current.humidity)%")
+                                    Spacer()
+                                    Text("Pressure: \(modelData.forecast!.current.pressure) hPg")
+                                    Spacer()
+                                }
+                            }
+                        }
+                        .fontWeight(.medium)
+                        HStack {
+                            Spacer()
+                            Image(systemName: "sunset.fill").renderingMode(.original)
+                            Text(getFormattedDate(from: modelData.forecast!.current.sunset ?? 0, type: 1))
+                            Spacer()
+                            Image(systemName: "sunrise.fill").renderingMode(.original)
+                            Text(getFormattedDate(from: modelData.forecast!.current.sunrise ?? 0, type: 1))
+                            Spacer()
+                        }
+
                     }
                 }
+                .font(.system(size:20))
                 Spacer()
             }
         }

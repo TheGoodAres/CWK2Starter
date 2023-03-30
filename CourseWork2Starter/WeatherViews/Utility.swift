@@ -53,3 +53,13 @@ struct IconFromWebsite: View {
         }
     }
 }
+// Struct used to customise the Label view, it makes the icon and the text stack vertically rather than horizontally
+//credit to: https://medium.com/macoclock/make-more-with-swiftuis-label-94ef56924a9d
+struct VerticalLabelStyle: LabelStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        VStack(alignment: .center, spacing: 8) {
+            configuration.icon
+            configuration.title
+        }
+    }
+}

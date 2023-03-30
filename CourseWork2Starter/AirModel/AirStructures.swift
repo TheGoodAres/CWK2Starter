@@ -8,21 +8,35 @@
 import Foundation
 
 // MARK: - AirQuality
-struct AirQuality: Codable {
-    let coord: [Int]
+struct AirQuality: Codable, Identifiable {
+    let id = UUID()
+    let coord: Coordinates
     let list: [ListData]
 }
 
-// MARK: - List
-struct ListData: Codable {
-    let dt: Int
-    let main: MainData
-    let components: [String: Double]
+struct Coordinates: Codable {
+    let lon: Double
+    let lat: Double
+
 }
 
-// MARK: - Main
+struct ListData: Codable {
+    let main: MainData
+    let components: Components
+    let dt: Int
+}
+
 struct MainData: Codable {
     let aqi: Int
 }
 
-
+struct Components: Codable {
+    let co: Double
+    let no: Double
+    let no2: Double
+    let o3: Double
+    let so2: Double
+    let pm2_5: Double
+    let pm10: Double
+    let nh3: Double
+}

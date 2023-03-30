@@ -57,6 +57,7 @@ struct SearchView: View {
         Task{
             do{
                 try await modelData.loadData(lat:lat,lon:lon)
+                try await modelData.loadAirData(lat: lat, lon: lon)
             } catch {
                 print("failed to load data!")
             }
