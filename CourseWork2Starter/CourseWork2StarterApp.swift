@@ -10,10 +10,13 @@ import SwiftUI
 @main
 struct CourseWork2StarterApp: App {
     @StateObject var modelData = ModelData()
+    @StateObject var locationManager = LocationManager()
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(modelData)
+                .environmentObject(locationManager
+                )
         }
     }
 }

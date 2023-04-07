@@ -11,6 +11,7 @@ struct DailyView: View {
     var day : Daily
     var body: some View {
         VStack{
+
             HStack {
                 IconFromWebsite(url:day.weather[0].icon)
                 Spacer()

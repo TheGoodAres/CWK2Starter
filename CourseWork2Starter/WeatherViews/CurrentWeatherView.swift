@@ -16,14 +16,15 @@ struct CurrentWeatherView: View {
         ZStack {
             Image("background2")
                 .resizable()
-                .scaledToFill()
                 .ignoresSafeArea()
 
-            VStack(spacing:50) {
+            VStack {
                 Spacer()
                 Text(locationString)
                     .font(.largeTitle)
                     .fontWeight(.medium)
+                    .padding()
+                Spacer()
                 
                 // Temperature Info
                 VStack(spacing:50) {

@@ -19,18 +19,18 @@ struct PollutionView: View {
             // Use ZStack for background images
 
             VStack {
-                VStack(spacing: 50) {
+                VStack {
                     Spacer()
                     Text(userLocation)
                         .font(.largeTitle)
                         .fontWeight(.medium)
-
+                        .padding()
                     // Temperature Info
-                    VStack(spacing: 50) {
+                    VStack {
                         Text("\((Int)(modelData.forecast!.current.temp))ºC")
                             .padding()
                             .font(.largeTitle)
-                        VStack(spacing: 30) {
+                        VStack {
                             HStack {
                                 Label {
                                     Text(modelData.forecast!.current.weather[0].weatherDescription.rawValue.capitalized)
@@ -52,7 +52,7 @@ struct PollutionView: View {
                                     .foregroundColor(.black)
                             }
 
-                            VStack(spacing: 40) {
+                            VStack{
 
                                 Text("Air Quality Data:")
                             }
@@ -66,6 +66,7 @@ struct PollutionView: View {
                                     Image("so2")
                                         .resizable()
                                         .scaledToFit()
+                                        .frame(width: 50,height: 50)
                                 }.labelStyle(VerticalLabelStyle())
                                     .padding()
 
@@ -75,6 +76,8 @@ struct PollutionView: View {
                                     Image("no")
                                         .resizable()
                                         .scaledToFit()
+                                    
+                                    .frame(width: 50,height: 50)
                                 }.labelStyle(VerticalLabelStyle())
                                     .padding()
 
@@ -84,6 +87,8 @@ struct PollutionView: View {
                                     Image("voc")
                                         .resizable()
                                         .scaledToFit()
+                                    
+                                    .frame(width: 50,height: 50)
                                 }.labelStyle(VerticalLabelStyle())
                                     .padding()
 
@@ -93,9 +98,12 @@ struct PollutionView: View {
                                     Image("pm")
                                         .resizable()
                                         .scaledToFit()
+                                    
+                                        .frame(width: 50,height: 50)
                                 }.labelStyle(VerticalLabelStyle())
                                     .padding()
                             }
+                                
                             
 
                         }

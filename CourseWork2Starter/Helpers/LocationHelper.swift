@@ -42,15 +42,41 @@ func getLocFromLatLong(lat: Double, lon: Double) async -> String
     return "Error getting Location"
 }
 
-func getCoordinates(forAddress address: String, completionHandler: @escaping (CLLocationCoordinate2D?, Error?) -> Void) {
-    let geocoder = CLGeocoder()
-    geocoder.geocodeAddressString(address) { (placemarks, error) in
-        guard let placemarks = placemarks, let location = placemarks.first?.location else {
-            completionHandler(nil, error)
-            return
+class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject{
+    var locationManager = CLLocationManager()
+    @Published var authorizationStatus: CLAuthorizationStatus?
+
+    override init() {
+        super.init()
+        locationManager.delegate = self
+    }
+
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus {
+        case .authorizedWhenInUse: // Location services are available.
+            authorizationStatus = .authorizedWhenInUse
+            locationManager.requestLocation()
+            break
+
+        case .restricted, .denied: // Location services currently unavailable.
+            // Insert code here of what should happen when Location services are NOT authorized
+            authorizationStatus = .restricted
+            authorizationStatus = .denied
+            break
+
+        case .notDetermined: // Authorization not determined yet.
+            manager.requestWhenInUseAuthorization()
+            authorizationStatus = .notDetermined
+            break
+
+        default:
+            break
         }
-        
-        let coordinates = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        completionHandler(coordinates, nil)
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+           // Insert code to handle location updates
+       }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("error: \(error.localizedDescription)")
     }
 }
